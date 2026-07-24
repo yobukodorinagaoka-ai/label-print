@@ -1,238 +1,31 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f6f0e6">
-  <title>おはぎチェック表 印刷</title>
-  <style>
-    :root{
-      --bg:#f6f0e6; --card:#fffdf9; --ink:#29241f; --sub:#766d63;
-      --line:#ddd2c4; --accent:#6f4e37; --accent2:#efe3d5; --danger:#9a3f3f;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; background:var(--bg); color:var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
-    }
-    main{max-width:640px;margin:0 auto;padding:20px 14px 44px}
-    h1{font-size:23px;margin:2px 0 6px;text-align:center}
-    .lead{margin:0 0 16px;text-align:center;color:var(--sub);font-size:14px}
-    .card{
-      background:var(--card); border:1px solid var(--line); border-radius:16px;
-      padding:14px; box-shadow:0 4px 18px rgba(70,50,30,.06);
-    }
-    .row{
-      display:grid; grid-template-columns:42px 1fr 42px; align-items:center;
-      gap:8px; padding:7px 0; border-bottom:1px solid #eee6dc;
-    }
-    .row:last-child{border-bottom:0}
-    input[type="checkbox"]{width:26px;height:26px;accent-color:var(--accent)}
-    input[type="text"]{
-      width:100%;font-size:17px;padding:10px 11px;border:1px solid var(--line);
-      border-radius:10px;background:white;color:var(--ink);
-    }
-    button{
-      border:0;border-radius:11px;font-size:16px;font-weight:700;min-height:46px;
-      padding:10px 14px;cursor:pointer;
-    }
-    .delete{background:transparent;color:var(--danger);font-size:20px;padding:0}
-    .tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-    .soft{background:var(--accent2);color:var(--accent)}
-    .add{width:100%;margin-top:10px;background:#eee9e2;color:var(--ink)}
-    .preview{margin-top:14px}
-    .preview h2{font-size:15px;margin:0 0 7px;color:var(--sub)}
-    pre{
-      margin:0;background:#fff;border:1px dashed var(--line);border-radius:10px;
-      padding:12px;white-space:pre-wrap;font-size:16px;line-height:1.45;
-    }
-    .print{
-      width:100%;margin-top:14px;background:var(--accent);color:white;
-      min-height:56px;font-size:19px;
-    }
-    .note{font-size:13px;color:var(--sub);line-height:1.55;margin:12px 3px 0}
-    details{margin-top:14px}
-    summary{color:var(--sub);font-size:14px}
-    .setting{margin-top:9px}
-    .setting label{font-size:13px;color:var(--sub);display:block;margin-bottom:4px}
-    .status{
-      display:none;margin-top:10px;padding:10px;border-radius:10px;
-      background:#fff4cf;color:#624f19;font-size:14px;
-    }
-  </style>
-</head>
-<body>
-<main>
-  <h1>おはぎチェック表</h1>
-  <p class="lead">印刷する商品にチェックを入れてください</p>
-
-  <section class="card">
-    <div id="items"></div>
-
-    <button class="add" id="addBtn" type="button">＋ 商品を追加</button>
-
-    <div class="tools">
-      <button class="soft" id="allBtn" type="button">すべて選択</button>
-      <button class="soft" id="clearBtn" type="button">選択解除</button>
-      <button class="soft" id="resetBtn" type="button">初期に戻す</button>
-    </div>
-
-    <div class="preview">
-      <h2>印刷内容</h2>
-      <pre id="preview"></pre>
-    </div>
-
-    <button class="print" id="printBtn" type="button">Smooth Printで印刷</button>
-    <div class="status" id="status"></div>
-
-    <details>
-      <summary>詳細設定</summary>
-      <div class="setting">
-        <label for="objectName">テンプレートのオブジェクト名</label>
-        <input id="objectName" type="text" value="LABELLIST" autocapitalize="characters">
-      </div>
-      <p class="note">
-        アップロードされたLBXを確認したところ、可変文字の名前は
-        「LABELLIST」として保存されていました。P-touch Editorで別名へ変更した場合だけ、
-        ここも同じ名前へ変更してください。
-      </p>
-    </details>
-  </section>
-
-  <p class="note">
-    初回はSmooth Printが開く確認が表示されることがあります。
-    プリンターと同じWi‑Fiに接続した状態で使用してください。
-  </p>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>おはぎチェック表</title>
+<style>
+:root{--bg:#f6f1ec;--card:#fffdfb;--ink:#3c332d;--sub:#7b6d63;--accent:#9a7554;--accent2:#eaded3;--danger:#b85d58;--line:#e8ddd5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}main{max-width:680px;margin:auto;padding:22px 14px 46px}h1{text-align:center;margin:4px 0 5px;font-size:28px}.lead{text-align:center;color:var(--sub);margin:0 0 18px;font-size:15px}.card{background:var(--card);border-radius:20px;padding:14px;box-shadow:0 3px 16px rgba(60,45,35,.06)}.item{display:grid;grid-template-columns:48px minmax(0,1fr) 126px 34px;gap:8px;align-items:center;padding:11px 2px;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.check{appearance:none;width:38px;height:38px;border:2px solid #bca997;border-radius:11px;background:white;position:relative;margin:auto}.check:checked{background:var(--accent);border-color:var(--accent)}.check:checked:after{content:"";position:absolute;left:11px;top:5px;width:10px;height:19px;border:solid white;border-width:0 4px 4px 0;transform:rotate(45deg)}.name{width:100%;min-width:0;border:1px solid #d8cbc0;border-radius:13px;padding:12px 13px;font-size:18px;background:white;color:var(--ink)}.qtybox{display:grid;grid-template-columns:38px 46px 38px;gap:2px;align-items:center}.step{height:38px;border:0;border-radius:10px;background:var(--accent2);font-size:24px;font-weight:700;color:var(--ink)}.qty{width:46px;height:38px;text-align:center;border:1px solid #d8cbc0;border-radius:9px;font-size:18px;color:var(--ink);background:white}.remove{border:0;background:transparent;color:var(--danger);font-size:27px;font-weight:700}.wide,.actions button,.print{border:0;border-radius:14px;font-weight:700;color:var(--ink);background:var(--accent2)}.wide{width:100%;padding:16px;margin-top:14px;font-size:18px}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.actions button{padding:13px 6px;font-size:15px}h2{font-size:18px;margin:20px 2px 8px}.preview{white-space:pre-wrap;background:white;border:1px dashed #cbb9aa;border-radius:15px;min-height:105px;padding:15px;font-size:18px;line-height:1.55}.print{width:100%;padding:18px;margin-top:15px;background:var(--accent);color:white;font-size:19px}.print:disabled{opacity:.45}.note{font-size:13px;color:var(--sub);line-height:1.5;margin:10px 4px}details{margin-top:16px;color:var(--sub)}details input{width:100%;padding:10px;margin-top:8px;border:1px solid #d8cbc0;border-radius:9px}@media(max-width:470px){.item{grid-template-columns:43px minmax(0,1fr) 112px 28px;gap:5px}.qtybox{grid-template-columns:34px 40px 34px}.step{height:36px}.qty{width:40px;height:36px}.name{font-size:17px;padding:11px 10px}}
+</style></head>
+<body><main>
+<h1>おはぎチェック表</h1><p class="lead">印刷する商品を選び、数量を入力してください</p>
+<section class="card"><div id="items"></div><button class="wide" id="add">＋ 商品を追加</button></section>
+<div class="actions"><button id="all">すべて選択</button><button id="none">選択解除</button><button id="reset">初期に戻す</button></div>
+<h2>印刷内容</h2><div id="preview" class="preview"></div><button id="print" class="print">Smooth Printで印刷</button>
+<p class="note">数量が1以上でチェックが付いている商品のみ印刷します。数量は直接入力するか、−／＋で変更できます。</p>
+<details><summary>印刷設定</summary><label>差し込みオブジェクト名<input id="objectName" value="LABELLIST"></label></details>
 </main>
-
 <script>
-(() => {
-  const defaults = [
-    "つぶあん","こしあん","きなこ","みたらし","宇治抹茶","ココナッツ",
-    "黒ごま","かぼちゃ","落花生","枝豆","うぐいす","よもぎ"
-  ].map(name => ({name, selected:true}));
-
-  const storageKey = "yobukodori-checklist-v1";
-  const itemsEl = document.getElementById("items");
-  const previewEl = document.getElementById("preview");
-  const statusEl = document.getElementById("status");
-  const objectNameEl = document.getElementById("objectName");
-
-  let items;
-  try {
-    items = JSON.parse(localStorage.getItem(storageKey)) || defaults;
-  } catch {
-    items = defaults;
-  }
-
-  function save() {
-    localStorage.setItem(storageKey, JSON.stringify(items));
-  }
-
-  function printText() {
-    return items
-      .filter(x => x.selected && x.name.trim())
-      .map(x => "□" + x.name.trim())
-      .join("\n");
-  }
-
-  function updatePreview() {
-    previewEl.textContent = printText() || "（商品が選択されていません）";
-  }
-
-  function render() {
-    itemsEl.innerHTML = "";
-    items.forEach((item, index) => {
-      const row = document.createElement("div");
-      row.className = "row";
-
-      const check = document.createElement("input");
-      check.type = "checkbox";
-      check.checked = !!item.selected;
-      check.setAttribute("aria-label", `${item.name}を印刷`);
-      check.addEventListener("change", () => {
-        items[index].selected = check.checked;
-        save(); updatePreview();
-      });
-
-      const name = document.createElement("input");
-      name.type = "text";
-      name.value = item.name;
-      name.placeholder = "商品名";
-      name.addEventListener("input", () => {
-        items[index].name = name.value;
-        save(); updatePreview();
-      });
-
-      const del = document.createElement("button");
-      del.type = "button";
-      del.className = "delete";
-      del.textContent = "×";
-      del.setAttribute("aria-label", `${item.name}を削除`);
-      del.addEventListener("click", () => {
-        items.splice(index, 1);
-        save(); render();
-      });
-
-      row.append(check, name, del);
-      itemsEl.appendChild(row);
-    });
-    updatePreview();
-  }
-
-  document.getElementById("addBtn").addEventListener("click", () => {
-    items.push({name:"", selected:true});
-    save(); render();
-    const inputs = itemsEl.querySelectorAll('input[type="text"]');
-    inputs[inputs.length - 1]?.focus();
-  });
-
-  document.getElementById("allBtn").addEventListener("click", () => {
-    items.forEach(x => x.selected = true); save(); render();
-  });
-
-  document.getElementById("clearBtn").addEventListener("click", () => {
-    items.forEach(x => x.selected = false); save(); render();
-  });
-
-  document.getElementById("resetBtn").addEventListener("click", () => {
-    if (!confirm("商品名と選択状態を初期状態に戻しますか？")) return;
-    items = defaults.map(x => ({...x}));
-    save(); render();
-  });
-
-  document.getElementById("printBtn").addEventListener("click", () => {
-    const text = printText();
-    if (!text) {
-      alert("印刷する商品を1つ以上選んでください。");
-      return;
-    }
-
-    const objectName = objectNameEl.value.trim();
-    if (!/^[A-Za-z0-9_.-]+$/.test(objectName)) {
-      alert("オブジェクト名を確認してください。");
-      return;
-    }
-
-    // GitHub Pages上の同じフォルダーにあるLBX/BINの絶対URLを作成。
-    const templateUrl = new URL("checklist.lbx", window.location.href).href;
-    const mediaUrl = new URL("RD50x30.bin", window.location.href).href;
-
-    const params = new URLSearchParams();
-    params.set("filename", templateUrl);
-    params.set("size", mediaUrl);
-    params.set("copies", "1");
-    params.set("text_" + objectName, text);
-
-    const scheme = "brotherwebprint://print?" + params.toString();
-
-    statusEl.style.display = "block";
-    statusEl.textContent = "Smooth Printを開いています…";
-    window.location.href = scheme;
-  });
-
-  render();
-})();
-</script>
-</body>
-</html>
+const initial=["つぶあん","こしあん","きなこ","みたらし","宇治抹茶","ココナッツ","黒ごま","かぼちゃ","落花生","枝豆","うぐいす","よもぎ"];
+const KEY="yobukodori-checklist-v2",OBJKEY="yobukodori-object-name";let data;
+function fresh(){return initial.map(name=>({name,checked:true,qty:1}))}
+try{const saved=JSON.parse(localStorage.getItem(KEY));data=Array.isArray(saved)&&saved.length?saved.map(x=>({name:String(x.name??""),checked:x.checked!==false,qty:Math.max(0,Math.min(999,parseInt(x.qty,10)||0))})):fresh()}catch(e){data=fresh()}
+const items=document.getElementById("items"),preview=document.getElementById("preview"),printBtn=document.getElementById("print"),objectName=document.getElementById("objectName");objectName.value=localStorage.getItem(OBJKEY)||"LABELLIST";
+function save(){localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(OBJKEY,objectName.value.trim()||"LABELLIST")}
+function selected(){return data.filter(x=>x.checked&&x.name.trim()&&x.qty>0)}
+function printText(){return selected().map(x=>`□${x.name.trim()}　${x.qty}`).join("\n")}
+function updatePreview(){const t=printText();preview.textContent=t||"印刷する商品がありません";printBtn.disabled=!t;save()}
+function render(){items.innerHTML="";data.forEach((item,i)=>{const row=document.createElement("div");row.className="item";row.innerHTML=`<input class="check" type="checkbox"><input class="name" type="text"><div class="qtybox"><button class="step minus" type="button">−</button><input class="qty" type="number" min="0" max="999" inputmode="numeric"><button class="step plus" type="button">＋</button></div><button class="remove" type="button">×</button>`;const check=row.querySelector(".check"),name=row.querySelector(".name"),qty=row.querySelector(".qty");check.checked=item.checked;name.value=item.name;qty.value=item.qty;check.onchange=()=>{item.checked=check.checked;updatePreview()};name.oninput=()=>{item.name=name.value;updatePreview()};qty.oninput=()=>{item.qty=Math.max(0,Math.min(999,parseInt(qty.value,10)||0));qty.value=item.qty;updatePreview()};row.querySelector(".minus").onclick=()=>{item.qty=Math.max(0,item.qty-1);qty.value=item.qty;updatePreview()};row.querySelector(".plus").onclick=()=>{item.qty=Math.min(999,item.qty+1);qty.value=item.qty;updatePreview()};row.querySelector(".remove").onclick=()=>{if(confirm(`「${item.name}」を削除しますか？`)){data.splice(i,1);render()}};items.appendChild(row)});updatePreview()}
+document.getElementById("add").onclick=()=>{data.push({name:"新しい商品",checked:true,qty:1});render();setTimeout(()=>items.lastElementChild?.querySelector(".name")?.select(),0)};document.getElementById("all").onclick=()=>{data.forEach(x=>x.checked=true);render()};document.getElementById("none").onclick=()=>{data.forEach(x=>x.checked=false);render()};document.getElementById("reset").onclick=()=>{if(confirm("商品名と数量を初期状態に戻しますか？")){data=fresh();render()}};objectName.oninput=updatePreview;
+printBtn.onclick=()=>{const text=printText();if(!text)return;const base=new URL(".",location.href).href,params=new URLSearchParams();params.set("filename",new URL("checklist.lbx",base).href);params.set("size",new URL("RD50x30.bin",base).href);params.set("copies","1");params.set("text_"+(objectName.value.trim()||"LABELLIST"),text);location.href="brotherwebprint://print?"+params.toString()};render();
+</script></body></html>
