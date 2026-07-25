@@ -243,16 +243,18 @@ printBtn.addEventListener("click", () => {
   if(!text) return;
 
   const base = new URL(".", location.href).href;
-  const params = new URLSearchParams();
+  const paramObj = {
+    filename: new URL("checklist20260725.lbx", base).href,
+    size: new URL("RD50x30_20260725.bin", base).href,
+    copies: "1",
+    text_ITEM1: text
+  };
 
-  params.set("filename", new URL("checklist20260725.lbx", base).href);
-  params.set("size", new URL("RD50x30_20260725.bin", base).href);
-  params.set("copies", "1");
+  const queryString = Object.entries(paramObj)
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .join("&");
 
-  // P-touch Editorで実際に設定したオブジェクト名
-  params.set("text_ITEM1", text);
-
-  location.href = "brotherwebprint://print?" + params.toString();
+  location.href = "brotherwebprint://print?" + queryString;
 });
 
 render();
