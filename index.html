@@ -138,7 +138,13 @@ function printableItems(){
 
 function buildPrintText(){
   return printableItems()
-    .map(x => `□${x.name.trim()} ${toFullWidth(x.qty)}`)
+    .map(x => {
+      const fullWidthQty = String(x.qty).replace(
+        /[0-9]/g,
+        d => "０１２３４５６７８９"[Number(d)]
+      );
+      return `□${x.name.trim()} ${fullWidthQty}`;
+    })
     .join("\n");
 }
 
@@ -244,7 +250,7 @@ printBtn.addEventListener("click", () => {
 
   const base = new URL(".", location.href).href;
   const paramObj = {
-    filename: new URL("checklist20260725_v2.lbx", base).href,
+    filename: new URL("checklist20260725.lbx", base).href,
     size: new URL("RD50x30_20260725.bin", base).href,
     copies: "1",
     text_ITEM1: text
