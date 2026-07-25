@@ -94,7 +94,7 @@ h2{font-size:17px;margin:17px 2px 7px}
 <h2>印刷内容</h2>
 <div id="preview" class="preview"></div>
 <button id="print" class="print" type="button">Smooth Printで印刷</button>
-<p class="note">チェックが付き、数量が1以上の商品だけを印刷します。初期数量はすべて0です。</p>
+<p class="note">チェックを付けた商品を、数量0でも印刷できます。初期数量はすべて0です。</p>
 </main>
 
 <script>
@@ -104,7 +104,7 @@ const initialNames = [
 ];
 
 // 前の版の保存内容と混ざらないよう、保存名を変更
-const STORAGE_KEY = "yobukodori-checklist-v3";
+const STORAGE_KEY = "yobukodori-checklist-v4";
 let data;
 
 function freshData(){
@@ -133,7 +133,7 @@ function save(){
 }
 
 function printableItems(){
-  return data.filter(x => x.checked && x.name.trim() && x.qty > 0);
+  return data.filter(x => x.checked && x.name.trim());
 }
 
 function buildPrintText(){
@@ -143,7 +143,7 @@ function buildPrintText(){
         /[0-9]/g,
         d => "０１２３４５６７８９"[Number(d)]
       );
-      return `□${x.name.trim()} ${fullWidthQty}`;
+      return x.qty === 0 ? `□${x.name.trim()}` : `□${x.name.trim()} ${fullWidthQty}`;
     })
     .join("\n");
 }
@@ -250,7 +250,7 @@ printBtn.addEventListener("click", () => {
 
   const base = new URL(".", location.href).href;
   const paramObj = {
-    filename: new URL("checklist20260725_v2.lbx", base).href,
+    filename: new URL("checklist20260725.lbx", base).href,
     size: new URL("RD50x30_20260725.bin", base).href,
     copies: "1",
     text_ITEM1: text
