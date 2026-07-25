@@ -138,7 +138,7 @@ function printableItems(){
 
 function buildPrintText(){
   return printableItems()
-    .map(x => `□${x.name.trim()} ${x.qty}`)
+    .map(x => `□${x.name.trim()} ${toFullWidth(x.qty)}`)
     .join("\n");
 }
 
