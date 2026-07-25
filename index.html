@@ -147,8 +147,7 @@ function itemPrintText(x){
 }
 
 function buildPrintText(){
-  return printableItems().map(itemPrintText).join("
-");
+  return printableItems().map(itemPrintText).join("\n");
 }
 
 function updatePreview(){
