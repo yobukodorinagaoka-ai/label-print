@@ -143,7 +143,7 @@ function toFullWidthNumber(value){
 function itemPrintText(x){
   const name = x.name.trim();
   if(!name) return "";
-  return x.qty === 0 ? `□${name}` : `☑${name} ${toFullWidthNumber(x.qty)}`;
+  return x.qty === 0 ? `□${name}` : `✓${name} ${toFullWidthNumber(x.qty)}`;
 }
 
 function buildPrintText(){
