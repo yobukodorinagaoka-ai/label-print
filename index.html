@@ -104,7 +104,7 @@ const initialNames = [
 ];
 
 // 前の版の保存内容と混ざらないよう、保存名を変更
-const STORAGE_KEY = "yobukodori-checklist-v4";
+const STORAGE_KEY = "yobukodori-checklist-v5";
 let data;
 
 function freshData(){
@@ -143,7 +143,7 @@ function toFullWidthNumber(value){
 function itemPrintText(x){
   const name = x.name.trim();
   if(!name) return "";
-  return x.qty === 0 ? `□${name}` : `□${name} ${toFullWidthNumber(x.qty)}`;
+  return x.qty === 0 ? `□${name}` : `☑${name} ${toFullWidthNumber(x.qty)}`;
 }
 
 function buildPrintText(){
